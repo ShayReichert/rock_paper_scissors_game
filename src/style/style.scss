@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@200;600;700&display=swap");
+
+// $backgroundColor: #1f3756 to #141539;
+$backgroundColor: radial-gradient(
+  circle,
+  rgba(31, 55, 86, 1) 0%,
+  rgba(20, 21, 57, 1) 80%
+);
+$scissorsMain: hsl(40, 84%, 53%);
+$scissorsShadow: #d58610;
+
+$paperMain: hsl(230, 89%, 65%);
+$paperShadow: #324bc9;
+
+$rockMain: hsl(349, 70%, 56%);
+$rockShadow: #aa0725;
+
+$shadow: #80808054;
+
+$darkText: hsl(229, 25%, 31%);
+$scoreText: hsl(229, 64%, 46%);
+$headerOutline: hsl(217, 16%, 45%);
+
+// Reset css
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  background: $backgroundColor;
+  color: white;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#root,
+.main {
+  width: 100vw;
+  height: 100vh;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid $headerOutline;
+  height: 40px;
+  width: 70%;
+  max-width: 300px;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding: 21px 20px;
+  img {
+    transform: scale(0.65);
+    margin-left: -23px;
+  }
+  .score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: $scoreText;
+    padding: 3px 20px;
+    border-radius: 6px;
+    cursor: default;
+    span:nth-of-type(1) {
+      text-transform: uppercase;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-top: 6px;
+    }
+    span:nth-of-type(2) {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $darkText;
+      margin-top: -6px;
+    }
+  }
+}
+
+// Main
+.center {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 50px;
+  // border: 1px solid white;
+}
+.main-game {
+  // border: 1px solid red;
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin: auto;
+  background: center no-repeat url(../images/bg-triangle.svg);
+  background-size: auto 200px;
+  background-position: bottom -24px right 39px;
+  .main-symbol {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid;
+    border-radius: 50%;
+    width: 83px;
+    height: 83px;
+    cursor: pointer;
+    opacity: 0.9;
+    img {
+      transform: scale(0.75);
+    }
+    &:hover {
+      opacity: 1;
+    }
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+  .main-paper {
+    border-color: $paperMain;
+    box-shadow: 0px 6px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
+    background: white;
+    top: -15px;
+    left: 17px;
+  }
+  .main-scissors {
+    border-color: $scissorsMain;
+    box-shadow: 0px 6px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
+    background: white;
+    top: -15px;
+    right: 17px;
+  }
+  .main-rock {
+    border-color: $rockMain;
+    box-shadow: 0px 6px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
+    background: white;
+    bottom: -15px;
+    right: 100px;
+  }
+}
+
+.rules-btn {
+  display: inline-block;
+  margin: auto;
+  margin-top: 30px;
+  border: 1px solid white;
+  border-radius: 5px;
+  button {
+    background: transparent;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    padding: 8px 30px;
+    cursor: pointer;
+  }
+}
+
+// Footer
+.attribution {
+  opacity: 0.3;
+  font-size: 0.65rem;
+  font-weight: 200;
+  display: block;
+  margin: auto;
+  margin-bottom: 6px;
+  a {
+    color: white;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// RESPONSIVE DESKTOP
+@media screen and (min-width: 768px) {
+  .header {
+    height: 80px;
+    width: 500px;
+    max-width: 500px;
+    padding: 22px;
+    img {
+      transform: scale(0.8);
+      margin-left: -14px;
+    }
+    .score {
+      padding: 12px 35px;
+      span:nth-of-type(1) {
+        font-size: 0.7rem;
+      }
+      span:nth-of-type(2) {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .center {
+    margin-top: 0;
+  }
+  .main-game {
+    width: 500px;
+    height: 400px;
+    background-size: 50%;
+    background-size: auto;
+    background-position: center;
+    .main-symbol {
+      border: 15px solid;
+      width: 120px;
+      height: 120px;
+      img {
+        transform: scale(1);
+      }
+    }
+    .main-paper {
+      border-color: $paperMain;
+      top: 30px;
+      left: 70px;
+    }
+    .main-scissors {
+      border-color: $scissorsMain;
+      top: 30px;
+      right: 70px;
+    }
+    .main-rock {
+      border-color: $rockMain;
+      bottom: 40px;
+      right: 176px;
+    }
+  }
+
+  .rules-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+  }
+
+  .attribution {
+    opacity: 0.3;
+    font-size: 0.65rem;
+    font-weight: 200;
+    position: absolute;
+    bottom: 5px;
+    left: 8px;
+    margin-bottom: 0;
+    a {
+      color: white;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
