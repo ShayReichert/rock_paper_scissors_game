@@ -1,6 +1,9 @@
 import React from "react";
 import "./style/style.scss";
 
+import useModal from "./hooks/useModal";
+import Modal from "./components/Modal";
+
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Attributions from "./components/Attributions";
@@ -13,6 +16,9 @@ import rock from "./images/icon-rock.svg";
 // import PlayerVsComputer from "./components/PlayerVsComputer";
 
 const App = () => {
+  const { isOpen, handleToogle } = useModal();
+  // const { isPlay, handleClick } = useComputer();
+
   return (
     <>
       <div className="main">
@@ -23,11 +29,14 @@ const App = () => {
           paper={paper}
           scissors={scissors}
           rock={rock}
+          // onClick={handleClick}
+          // isPlay={isPlay}
         />
         {/* <PlayerVsComputer /> */}
         <div className="rules-btn">
-          <button>Rules</button>
+          <button onClick={handleToogle}>Rules</button>
         </div>
+        <Modal isOpen={isOpen} close={handleToogle} />
         <Attributions name="Shay Reichert" />
       </div>
     </>

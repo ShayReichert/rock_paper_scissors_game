@@ -39,6 +39,7 @@ body {
   height: 100vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  text-align: center;
 }
 #root,
 .main {
@@ -50,6 +51,68 @@ body {
   flex-direction: column;
 }
 
+// Modal
+.main-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.5;
+}
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+}
+.modal {
+  z-index: 100;
+  background: white;
+  margin: auto;
+  border-radius: 7px;
+  max-width: 320px;
+  height: 342px;
+  padding: 1.4rem;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 25px;
+    .rules {
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: $darkText;
+    }
+    .close-modal-btn {
+      color: #c1c1c1;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.8rem;
+      font-weight: 700;
+      width: 45px;
+      height: 45px;
+      padding-top: 2px;
+      transition: 200ms all;
+      span {
+        vertical-align: middle;
+      }
+      &:hover {
+        background: #f3f3f3;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+// Header
 .header {
   display: flex;
   justify-content: space-between;
