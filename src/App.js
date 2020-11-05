@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./style/style.scss";
-
-import useModal from "./hooks/useModal";
 import Modal from "./components/Modal";
+import useModal from "./hooks/useModal";
 
+import HandlePlayerChoice from "./components/HandlePlayerChoice";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Attributions from "./components/Attributions";
@@ -12,24 +12,20 @@ import paper from "./images/icon-paper.svg";
 import scissors from "./images/icon-scissors.svg";
 import rock from "./images/icon-rock.svg";
 
-import useComputer from "./hooks/useComputer";
-import PlayRock from "./components/PlayRock";
-import PlayScissors from "./components/PlayScissors";
-import PlayPaper from "./components/PlayPaper";
-
+import { PlayRock, PlayScissors, PlayPaper } from "./components/PlayElements";
 import House from "./components/House";
 
 const App = () => {
   const { isOpen, handleToogle } = useModal();
   const [score, setScore] = useState(0);
-  const [addClassPlayer, setAddClassPlayer] = useState("");
-  const [addClassHousePicked, setAddClassHousePicked] = useState("");
-  const [addClassCircleWin, setAddClassCircleWin] = useState("");
+  const [moveLeftPlayer, setMoveLeftPlayer] = useState("");
+  const [moveHousePicked, setMoveHousePicked] = useState("");
+  const [addCircleWinPlayer, setAddCircleWinPlayer] = useState("");
 
   const handleReset = () => {
-    setAddClassCircleWin("");
-    setAddClassHousePicked("");
-    setAddClassPlayer("");
+    setAddCircleWinPlayer("");
+    setMoveHousePicked("");
+    setMoveLeftPlayer("");
     reset();
   };
 
@@ -42,7 +38,21 @@ const App = () => {
     playRock,
     isPlayRock,
     reset,
-  } = useComputer();
+  } = HandlePlayerChoice();
+
+  const houseComponent = (
+    <House
+      isPlayRock={isPlayRock}
+      isPlayScissors={isPlayScissors}
+      isPlayPaper={isPlayPaper}
+      setScore={setScore}
+      score={score}
+      handleReset={handleReset}
+      setMoveLeftPlayer={setMoveLeftPlayer}
+      setMoveHousePicked={setMoveHousePicked}
+      setAddCircleWinPlayer={setAddCircleWinPlayer}
+    />
+  );
 
   return (
     <>
@@ -59,63 +69,31 @@ const App = () => {
           />
         )}
 
-        {/* Essayer de faire qu'un composant en créant une variable selon ce que le joueur joue */}
-        {/* Voir si on peut utiliser .filter() */}
         {isPlayPaper && (
           <PlayPaper
-            addClassPlayer={addClassPlayer}
-            addClassHousePicked={addClassHousePicked}
-            addClassCircleWin={addClassCircleWin}
+            moveLeftPlayer={moveLeftPlayer}
+            moveHousePicked={moveHousePicked}
+            addCircleWinPlayer={addCircleWinPlayer}
           >
-            <House
-              isPlayRock={isPlayRock}
-              isPlayScissors={isPlayScissors}
-              isPlayPaper={isPlayPaper}
-              setScore={setScore}
-              score={score}
-              handleReset={handleReset}
-              setAddClassPlayer={setAddClassPlayer}
-              setAddClassHousePicked={setAddClassHousePicked}
-              setAddClassCircleWin={setAddClassCircleWin}
-            />
+            {houseComponent}
           </PlayPaper>
         )}
         {isPlayScissors && (
           <PlayScissors
-            addClassPlayer={addClassPlayer}
-            addClassHousePicked={addClassHousePicked}
-            addClassCircleWin={addClassCircleWin}
+            moveLeftPlayer={moveLeftPlayer}
+            moveHousePicked={moveHousePicked}
+            addCircleWinPlayer={addCircleWinPlayer}
           >
-            <House
-              isPlayRock={isPlayRock}
-              isPlayScissors={isPlayScissors}
-              isPlayPaper={isPlayPaper}
-              setScore={setScore}
-              score={score}
-              handleReset={handleReset}
-              setAddClassPlayer={setAddClassPlayer}
-              setAddClassHousePicked={setAddClassHousePicked}
-              setAddClassCircleWin={setAddClassCircleWin}
-            />
+            {houseComponent}
           </PlayScissors>
         )}
         {isPlayRock && (
           <PlayRock
-            addClassPlayer={addClassPlayer}
-            addClassHousePicked={addClassHousePicked}
-            addClassCircleWin={addClassCircleWin}
+            moveLeftPlayer={moveLeftPlayer}
+            moveHousePicked={moveHousePicked}
+            addCircleWinPlayer={addCircleWinPlayer}
           >
-            <House
-              isPlayRock={isPlayRock}
-              isPlayScissors={isPlayScissors}
-              isPlayPaper={isPlayPaper}
-              setScore={setScore}
-              score={score}
-              handleReset={handleReset}
-              setAddClassPlayer={setAddClassPlayer}
-              setAddClassHousePicked={setAddClassHousePicked}
-              setAddClassCircleWin={setAddClassCircleWin}
-            />
+            {houseComponent}
           </PlayRock>
         )}
 

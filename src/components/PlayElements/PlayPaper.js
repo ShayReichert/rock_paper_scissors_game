@@ -1,11 +1,11 @@
 import React from "react";
-import paper from "../images/icon-paper.svg";
+import paper from "../../images/icon-paper.svg";
 
 const PlayPaper = ({
   children,
-  addClassPlayer,
-  addClassHousePicked,
-  addClassCircleWin,
+  moveLeftPlayer,
+  moveHousePicked,
+  addCircleWinPlayer,
 }) => {
   return (
     <>
@@ -13,12 +13,12 @@ const PlayPaper = ({
         <div className="picked">
           <p>You Picked</p>
         </div>
-        <div className={`picked house-picked ${addClassHousePicked}`}>
+        <div className={`picked house-picked ${moveHousePicked}`}>
           <p>The House Picked</p>
         </div>
 
-        <div className={`play-symbol play-paper ${addClassPlayer}`}>
-          <div className={addClassCircleWin}></div>
+        <div className={`play-symbol play-paper ${moveLeftPlayer}`}>
+          <div className={addCircleWinPlayer}></div>
           <div className="play-icon">
             <img src={paper} alt="paper" />
           </div>

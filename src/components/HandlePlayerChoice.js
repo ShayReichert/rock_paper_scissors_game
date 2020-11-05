@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useComputer = () => {
+const HandlePlayerChoice = () => {
   const [isPlay, setIsPlay] = useState(false);
   const [isPlayPaper, setIsPlayPaper] = useState(false);
   const [isPlayScissors, setIsPlayScissors] = useState(false);
@@ -38,4 +38,7 @@ const useComputer = () => {
   };
 };
 
-export default useComputer;
+export default HandlePlayerChoice;
+
+// spread operator pour mettre à jour plusieurs éléments dans un useState :
+// setUser((user) = > ({ ...user, name: 'Nathan' }));

@@ -1,14 +1,6 @@
 import React from "react";
 
-const Main = ({
-  paper,
-  scissors,
-  rock,
-  playPaper,
-  playScissors,
-  playRock,
-  addClass,
-}) => {
+const Main = ({ paper, scissors, rock, playPaper, playScissors, playRock }) => {
   return (
     <div className="center">
       <div className="main-game">
