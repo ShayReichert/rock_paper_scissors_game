@@ -6,7 +6,7 @@ const useModal = () => {
   const handleToogle = () => {
     setIsOpen((prevState) => !prevState);
   };
-  console.log(isOpen);
+
   return { isOpen, handleToogle };
 };
 

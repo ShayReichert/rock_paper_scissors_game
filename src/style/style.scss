@@ -79,7 +79,9 @@ body {
   height: 342px;
   padding: 1.4rem;
   margin-top: 50vh;
-  transform: translateY(-50%);
+
+  animation: 0.7s ease appears forwards;
+  // transform: translateY(-50%);
   .modal-header {
     display: flex;
     justify-content: space-between;
@@ -112,6 +114,16 @@ body {
   }
 }
 
+@keyframes appears {
+  0% {
+    opacity: 0;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
 // Header
 .header {
   display: flex;
@@ -173,48 +185,46 @@ body {
   background: center no-repeat url(../images/bg-triangle.svg);
   background-size: auto 200px;
   background-position: bottom -24px right 39px;
-  .main-symbol {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 10px solid;
-    border-radius: 50%;
-    width: 83px;
-    height: 83px;
-    cursor: pointer;
-    opacity: 0.9;
-    img {
-      transform: scale(0.75);
-    }
-    &:hover {
-      opacity: 1;
-    }
-    &:active {
-      transform: translateY(2px);
-    }
+}
+.main-symbol {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: 10px solid;
+  border-radius: 50%;
+  width: 83px;
+  height: 83px;
+  cursor: pointer;
+  opacity: 0.9;
+  img {
+    transform: scale(0.75);
   }
-  .main-paper {
-    border-color: $paperMain;
-    box-shadow: 0px 6px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
-    background: white;
-    top: -15px;
-    left: 17px;
+  &:hover {
+    opacity: 1;
   }
-  .main-scissors {
-    border-color: $scissorsMain;
-    box-shadow: 0px 6px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
-    background: white;
-    top: -15px;
-    right: 17px;
+  &:active {
+    transform: translateY(2px);
   }
-  .main-rock {
-    border-color: $rockMain;
-    box-shadow: 0px 6px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
-    background: white;
-    bottom: -15px;
-    right: 100px;
-  }
+}
+.main-paper {
+  border-color: $paperMain;
+  box-shadow: 0px 6px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
+  top: -15px;
+  left: 17px;
+}
+.main-scissors {
+  border-color: $scissorsMain;
+  box-shadow: 0px 6px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
+  top: -15px;
+  right: 17px;
+}
+.main-rock {
+  border-color: $rockMain;
+  box-shadow: 0px 6px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
+  bottom: -15px;
+  right: 100px;
 }
 
 .rules-btn {
@@ -251,6 +261,191 @@ body {
   }
 }
 
+// PLAY ${COMPOSANT}
+.play-composant {
+  position: relative;
+  width: 800px;
+  margin: 0 auto;
+  height: 400px;
+  .picked {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-top: 26px;
+    width: 34%;
+    text-shadow: 1px 1px 4px black;
+    transition: all 200ms ease-out;
+    // border: 1px solid white;
+  }
+  .house-picked {
+    display: inline-block;
+    margin-left: 70px;
+    // border: 1px solid white;
+  }
+  .move-picked {
+    margin-left: 250px;
+  }
+
+  .play-symbol {
+    position: absolute;
+    top: 90px;
+    left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 30px solid;
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+    transition: all 200ms ease-out;
+  }
+  .circle-win {
+    position: absolute;
+    z-index: -1;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    background-color: #2c395791;
+    opacity: 0;
+    animation: 0.3s slowAppers ease-in-out forwards;
+    &::before {
+      content: "";
+      z-index: -2;
+      position: absolute;
+      top: -44px;
+      left: -46px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background-color: #2636535d;
+      opacity: 0;
+      animation: 0.3s slowAppers ease-in-out forwards;
+      animation-delay: 150ms;
+    }
+    &::after {
+      top: -98px;
+      left: -99px;
+      content: "";
+      z-index: -3;
+      position: absolute;
+      width: 530px;
+      height: 530px;
+      border-radius: 50%;
+      background-color: #24355142;
+      opacity: 0;
+      animation: 0.3s slowAppers ease-in-out forwards;
+      animation-delay: 300ms;
+    }
+  }
+
+  @keyframes slowAppers {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .play-icon {
+    transform: scale(1.7);
+  }
+  .play-paper {
+    border-color: $paperMain;
+    box-shadow: 0px 6px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
+  }
+  .play-scissors {
+    border-color: $scissorsMain;
+    box-shadow: 0px 6px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
+  }
+  .play-rock {
+    border-color: $rockMain;
+    box-shadow: 0px 6px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
+  }
+  .moveLeft {
+    left: 10px;
+  }
+  .moveRight {
+    right: 10px;
+  }
+}
+
+.circle-wait {
+  // border: 1px solid green;
+  position: absolute;
+  top: 90px;
+  right: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 260px;
+  height: 260px;
+  .dark-circle {
+    height: 190px;
+    width: 190px;
+    background: #1d243a;
+    border-radius: 50%;
+  }
+  .rockComputer,
+  .scissorsComputer,
+  .paperComputer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 30px solid;
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+    img {
+      transform: scale(1.7);
+    }
+  }
+  .rockComputer {
+    border-color: $rockMain;
+    box-shadow: 0px 6px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
+  }
+  .scissorsComputer {
+    border-color: $scissorsMain;
+    box-shadow: 0px 6px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
+  }
+  .paperComputer {
+    border-color: $paperMain;
+    box-shadow: 0px 6px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
+  }
+}
+.replay {
+  position: absolute;
+  top: 70px;
+  left: -222px;
+  display: flex;
+  flex-direction: column;
+  p {
+    text-transform: uppercase;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: -1px 3px 7px #000000a1;
+  }
+  button {
+    padding: 10px 50px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      color: $rockShadow;
+    }
+  }
+}
+
 // RESPONSIVE DESKTOP
 @media screen and (min-width: 768px) {
   .header {
@@ -282,29 +477,29 @@ body {
     background-size: 50%;
     background-size: auto;
     background-position: center;
-    .main-symbol {
-      border: 15px solid;
-      width: 120px;
-      height: 120px;
-      img {
-        transform: scale(1);
-      }
+  }
+  .main-symbol {
+    border: 15px solid;
+    width: 120px;
+    height: 120px;
+    img {
+      transform: scale(1);
     }
-    .main-paper {
-      border-color: $paperMain;
-      top: 30px;
-      left: 70px;
-    }
-    .main-scissors {
-      border-color: $scissorsMain;
-      top: 30px;
-      right: 70px;
-    }
-    .main-rock {
-      border-color: $rockMain;
-      bottom: 40px;
-      right: 176px;
-    }
+  }
+  .main-paper {
+    border-color: $paperMain;
+    top: 30px;
+    left: 70px;
+  }
+  .main-scissors {
+    border-color: $scissorsMain;
+    top: 30px;
+    right: 70px;
+  }
+  .main-rock {
+    border-color: $rockMain;
+    bottom: 40px;
+    right: 176px;
   }
 
   .rules-btn {
