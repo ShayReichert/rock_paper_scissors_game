@@ -1,12 +1,26 @@
 import React from "react";
-import rock from "../../images/icon-rock.svg";
+import { paperImg, scissorsImg, rockImg } from "../images";
 
-const PlayRock = ({
+const PlayElement = ({
   children,
   moveLeftPlayer,
   moveHousePicked,
   addCircleWinPlayer,
+  isPlayPaper,
+  isPlayScissors,
 }) => {
+  let element;
+  let img;
+  if (isPlayPaper) {
+    element = "paper";
+    img = paperImg;
+  } else if (isPlayScissors) {
+    element = "scissors";
+    img = scissorsImg;
+  } else {
+    element = "rock";
+    img = rockImg;
+  }
   return (
     <>
       <div className="play-composant">
@@ -17,10 +31,10 @@ const PlayRock = ({
           <p>The House Picked</p>
         </div>
 
-        <div className={`play-symbol play-rock ${moveLeftPlayer}`}>
+        <div className={`play-symbol play-${element} ${moveLeftPlayer}`}>
           <div className={addCircleWinPlayer}></div>
           <div className="play-icon">
-            <img src={rock} alt="rock" />
+            <img src={img} alt={element} />
           </div>
         </div>
         {children}
@@ -29,4 +43,4 @@ const PlayRock = ({
   );
 };
 
-export default PlayRock;
+export default PlayElement;

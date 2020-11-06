@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import paper from "../images/icon-paper.svg";
-import rock from "../images/icon-rock.svg";
-import scissors from "../images/icon-scissors.svg";
+import { paperImg, scissorsImg, rockImg } from "../images";
 
 const House = ({
   isPlayRock,
@@ -22,7 +20,7 @@ const House = ({
 
   const handleRandomResult = () => {
     const random = Math.floor(Math.random() * Math.floor(3));
-    let computerPlay = "";
+    let computerPlay;
     switch (random) {
       case 0:
         computerPlay = "paperComputer";
@@ -31,100 +29,95 @@ const House = ({
         computerPlay = "scissorsComputer";
         break;
       case 2:
-        computerPlay = "rockComputer";
-        break;
       default:
         computerPlay = "rockComputer";
     }
     setIsPlaying(false);
     setComputerPlays(computerPlay);
     fight(computerPlay);
-    return computerPlay;
   };
 
   const fight = (computerPlay) => {
     setTimeout(next, 700);
-    let result = "";
+    let result;
+
     function next() {
       if (isPlayRock) {
         switch (computerPlay) {
           case "paperComputer":
-            result = "You Lose";
-            setScore(score - 1);
-            setAddCircleWinComputer("circle-win");
+            lose();
             break;
           case "scissorsComputer":
-            result = "You Win";
-            setScore(score + 1);
-            setAddCircleWinPlayer("circle-win");
+            win();
             break;
           case "rockComputer":
-            result = "Match";
-            break;
           default:
             result = "Match";
         }
       } else if (isPlayScissors) {
         switch (computerPlay) {
           case "paperComputer":
-            result = "You Win";
-            setScore(score + 1);
-            setAddCircleWinPlayer("circle-win");
-            break;
-          case "scissorsComputer":
-            result = "Match";
+            win();
             break;
           case "rockComputer":
-            result = "You Lose";
-            setScore(score - 1);
-            setAddCircleWinComputer("circle-win");
+            lose();
             break;
+          case "scissorsComputer":
           default:
             result = "Match";
         }
       } else if (isPlayPaper) {
         switch (computerPlay) {
-          case "paperComputer":
-            result = "Match";
-            break;
           case "scissorsComputer":
-            result = "You Lose";
-            setScore(score - 1);
-            setAddCircleWinComputer("circle-win");
+            lose();
             break;
           case "rockComputer":
-            result = "You Win";
-            setScore(score + 1);
-            setAddCircleWinPlayer("circle-win");
+            win();
             break;
+          case "paperComputer":
           default:
             result = "Match";
         }
       }
-      setResults(result);
-      setMoveLeftPlayer("moveLeft");
-      setMoveRightComputer("moveRight");
-      setMoveHousePicked("move-picked");
+
+      function lose() {
+        result = "You Lose";
+        setScore(score - 1);
+        setAddCircleWinComputer("circle-win");
+      }
+      function win() {
+        result = "You Win";
+        setScore(score + 1);
+        setAddCircleWinPlayer("circle-win");
+      }
+
+      setFinalResults(result);
     }
   };
+
+  function setFinalResults(result) {
+    setResults(result);
+    setMoveLeftPlayer("moveLeft");
+    setMoveRightComputer("moveRight");
+    setMoveHousePicked("move-picked");
+  }
 
   if (isPlaying) {
     setTimeout(handleRandomResult, 1000);
   }
-
-  // Display computer choice's logo
-  const paperDisplay = computerPlays === "paperComputer";
-  const scissorsDisplay = computerPlays === "scissorsComputer";
-  const rockDisplay = computerPlays === "rockComputer";
 
   return (
     <>
       <div className={`circle-wait ${moveRightComputer}`}>
         <div className={addCircleWinComputer}></div>
         <div className={`dark-circle ${computerPlays}`}>
-          {paperDisplay && <img src={paper} alt="computer game" />}
-          {scissorsDisplay && <img src={scissors} alt="computer game" />}
-          {rockDisplay && <img src={rock} alt="computer game" />}
+          {computerPlays === "paperComputer" ? (
+            <img src={paperImg} alt="computer game" />
+          ) : computerPlays === "scissorsComputer" ? (
+            <img src={scissorsImg} alt="computer game" />
+          ) : computerPlays === "rockComputer" ? (
+            <img src={rockImg} alt="computer game" />
+          ) : null}
         </div>
         {results && (
           <div className="replay">

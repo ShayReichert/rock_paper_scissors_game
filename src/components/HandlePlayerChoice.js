@@ -39,6 +39,3 @@ const HandlePlayerChoice = () => {
 };
 
 export default HandlePlayerChoice;
-
-// spread operator pour mettre à jour plusieurs éléments dans un useState :
-// setUser((user) = > ({ ...user, name: 'Nathan' }));
