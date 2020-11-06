@@ -4,7 +4,7 @@ import { paperImg, scissorsImg, rockImg } from "../images";
 const PlayElement = ({
   children,
   moveLeftPlayer,
-  moveHousePicked,
+  moveTitles,
   addCircleWinPlayer,
   isPlayPaper,
   isPlayScissors,
@@ -27,7 +27,7 @@ const PlayElement = ({
         <div className="picked">
           <p>You Picked</p>
         </div>
-        <div className={`picked house-picked ${moveHousePicked}`}>
+        <div className={`picked house-picked ${moveTitles}`}>
           <p>The House Picked</p>
         </div>
 

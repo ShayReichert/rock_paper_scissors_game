@@ -9,7 +9,7 @@ const House = ({
   score,
   handleReset,
   setMoveLeftPlayer,
-  setMoveHousePicked,
+  setMoveTitles,
   setAddCircleWinPlayer,
 }) => {
   const [computerPlays, setComputerPlays] = useState("");
@@ -99,7 +99,7 @@ const House = ({
     setResults(result);
     setMoveLeftPlayer("moveLeft");
     setMoveRightComputer("moveRight");
-    setMoveHousePicked("move-picked");
+    setMoveTitles("move-picked");
   }
 
   if (isPlaying) {

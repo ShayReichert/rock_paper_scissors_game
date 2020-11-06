@@ -15,12 +15,12 @@ const App = () => {
   const { isOpen, handleToogle } = useModal();
   const [score, setScore] = useState(0);
   const [moveLeftPlayer, setMoveLeftPlayer] = useState("");
-  const [moveHousePicked, setMoveHousePicked] = useState("");
+  const [moveTitles, setMoveTitles] = useState("");
   const [addCircleWinPlayer, setAddCircleWinPlayer] = useState("");
 
   const handleReset = () => {
     setAddCircleWinPlayer("");
-    setMoveHousePicked("");
+    setMoveTitles("");
     setMoveLeftPlayer("");
     reset();
   };
@@ -53,7 +53,7 @@ const App = () => {
               isPlayScissors={isPlayScissors}
               isPlayPaper={isPlayPaper}
               moveLeftPlayer={moveLeftPlayer}
-              moveHousePicked={moveHousePicked}
+              moveTitles={moveTitles}
               addCircleWinPlayer={addCircleWinPlayer}
             >
               <House
@@ -64,7 +64,7 @@ const App = () => {
                 score={score}
                 handleReset={handleReset}
                 setMoveLeftPlayer={setMoveLeftPlayer}
-                setMoveHousePicked={setMoveHousePicked}
+                setMoveTitles={setMoveTitles}
                 setAddCircleWinPlayer={setAddCircleWinPlayer}
               />
             </PlayElement>
