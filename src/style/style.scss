@@ -31,6 +31,7 @@ $headerOutline: hsl(217, 16%, 45%);
   vertical-align: baseline;
 }
 
+// General
 body {
   background: $backgroundColor;
   color: white;
@@ -69,6 +70,10 @@ body {
   z-index: 1050;
   width: 100%;
   height: 100%;
+  transform: scale(0.75);
+  @media screen and (min-width: 768px) {
+    transform: scale(1);
+  }
 }
 .modal {
   z-index: 100;
@@ -77,11 +82,13 @@ body {
   border-radius: 7px;
   max-width: 320px;
   height: 342px;
-  padding: 1.4rem;
+  padding: 0.4rem;
   margin-top: 50vh;
-
   animation: 0.7s ease appears forwards;
-  // transform: translateY(-50%);
+  @media screen and (min-width: 768px) {
+    padding: 1.4rem;
+  }
+
   .modal-header {
     display: flex;
     justify-content: space-between;
@@ -133,14 +140,14 @@ body {
   height: 40px;
   width: 70%;
   max-width: 300px;
-  border-radius: 10px;
+  border-radius: 4px;
   margin: auto;
   margin-top: 25px;
   margin-bottom: 20px;
-  padding: 21px 20px;
+  padding: 17px 8px;
   img {
-    transform: scale(0.65);
-    margin-left: -23px;
+    transform: scale(0.45);
+    margin-left: -37px;
   }
   .score {
     display: flex;
@@ -150,17 +157,17 @@ body {
     background: white;
     color: $scoreText;
     padding: 3px 20px;
-    border-radius: 6px;
+    border-radius: 3px;
     cursor: default;
     span:nth-of-type(1) {
       text-transform: uppercase;
-      font-size: 0.6rem;
+      font-size: 0.5rem;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       margin-top: 6px;
     }
     span:nth-of-type(2) {
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       font-weight: 700;
       color: $darkText;
       margin-top: -6px;
@@ -174,10 +181,8 @@ body {
   flex-direction: column;
   margin: auto;
   margin-top: 50px;
-  // border: 1px solid white;
 }
 .main-game {
-  // border: 1px solid red;
   position: relative;
   width: 300px;
   height: 200px;
@@ -210,19 +215,19 @@ body {
 }
 .main-paper {
   border-color: $paperMain;
-  box-shadow: 0px 6px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
+  box-shadow: 0px 5px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
   top: -15px;
   left: 17px;
 }
 .main-scissors {
   border-color: $scissorsMain;
-  box-shadow: 0px 6px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
+  box-shadow: 0px 5px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
   top: -15px;
   right: 17px;
 }
 .main-rock {
   border-color: $rockMain;
-  box-shadow: 0px 6px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
+  box-shadow: 0px 5px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
   bottom: -15px;
   right: 100px;
 }
@@ -230,7 +235,8 @@ body {
 .rules-btn {
   display: inline-block;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 120px;
+  margin-bottom: 50px;
   border: 1px solid white;
   border-radius: 5px;
   button {
@@ -261,52 +267,53 @@ body {
   }
 }
 
-// PLAY ${COMPOSANT}
+// PLAY ${COMPONENTS}
 .play-composant {
   position: relative;
-  width: 800px;
+  width: 300px;
+  height: 200px;
   margin: 0 auto;
-  height: 400px;
+  margin-bottom: 66px;
   .picked {
     display: inline-block;
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 2px;
-    margin-top: 26px;
-    width: 34%;
+    letter-spacing: 1px;
+    margin-top: 170px;
+    width: 40%;
     text-shadow: 1px 1px 4px black;
     transition: all 200ms ease-out;
-    // border: 1px solid white;
   }
   .house-picked {
     display: inline-block;
-    margin-left: 70px;
-    // border: 1px solid white;
+    margin-left: 41px;
   }
-  .move-picked {
-    margin-left: 250px;
-  }
-
   .play-symbol {
     position: absolute;
-    top: 90px;
-    left: 100px;
+    top: 38px;
+    left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: white;
-    border: 30px solid;
+    border: 10px solid;
     border-radius: 50%;
-    width: 190px;
-    height: 190px;
+    width: 83px;
+    height: 83px;
     transition: all 200ms ease-out;
+    .circle-win {
+      top: -24px;
+      left: -25px;
+    }
   }
   .circle-win {
     position: absolute;
+    top: -13px;
+    left: -15px;
     z-index: -1;
-    width: 330px;
-    height: 330px;
+    width: 133px;
+    height: 133px;
     border-radius: 50%;
     background-color: #2c395791;
     opacity: 0;
@@ -315,10 +322,10 @@ body {
       content: "";
       z-index: -2;
       position: absolute;
-      top: -44px;
-      left: -46px;
-      width: 420px;
-      height: 420px;
+      top: -21px;
+      left: -22px;
+      width: 176px;
+      height: 176px;
       border-radius: 50%;
       background-color: #2636535d;
       opacity: 0;
@@ -326,13 +333,13 @@ body {
       animation-delay: 150ms;
     }
     &::after {
-      top: -98px;
-      left: -99px;
       content: "";
       z-index: -3;
       position: absolute;
-      width: 530px;
-      height: 530px;
+      top: -45px;
+      left: -49px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
       background-color: #24355142;
       opacity: 0;
@@ -340,7 +347,6 @@ body {
       animation-delay: 300ms;
     }
   }
-
   @keyframes slowAppers {
     0% {
       opacity: 0;
@@ -349,45 +355,35 @@ body {
       opacity: 1;
     }
   }
-
   .play-icon {
-    transform: scale(1.7);
+    transform: scale(0.75);
   }
   .play-paper {
     border-color: $paperMain;
-    box-shadow: 0px 6px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
+    box-shadow: 0px 5px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
   }
   .play-scissors {
     border-color: $scissorsMain;
-    box-shadow: 0px 6px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
+    box-shadow: 0px 5px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
   }
   .play-rock {
     border-color: $rockMain;
-    box-shadow: 0px 6px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
-  }
-  .moveLeft {
-    left: 10px;
-  }
-  .moveRight {
-    right: 10px;
+    box-shadow: 0px 5px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
   }
 }
 
 .circle-wait {
-  // border: 1px solid green;
   position: absolute;
-  top: 90px;
-  right: 100px;
+  top: 38px;
+  right: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 260px;
-  height: 260px;
   .dark-circle {
-    height: 190px;
-    width: 190px;
+    width: 83px;
+    height: 83px;
     background: #1d243a;
     border-radius: 50%;
   }
@@ -398,41 +394,41 @@ body {
     justify-content: center;
     align-items: center;
     background: white;
-    border: 30px solid;
+    border: 10px solid;
     border-radius: 50%;
-    width: 190px;
-    height: 190px;
+    width: 83px;
+    height: 83px;
     img {
-      transform: scale(1.7);
+      transform: scale(0.75);
     }
-  }
-  .rockComputer {
-    border-color: $rockMain;
-    box-shadow: 0px 6px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
-  }
-  .scissorsComputer {
-    border-color: $scissorsMain;
-    box-shadow: 0px 6px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
   }
   .paperComputer {
     border-color: $paperMain;
-    box-shadow: 0px 6px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
+    box-shadow: 0px 5px 0px 0px $paperShadow, inset 0px 5px 0px 0px $shadow;
+  }
+  .scissorsComputer {
+    border-color: $scissorsMain;
+    box-shadow: 0px 5px 0px 0px $scissorsShadow, inset 0px 5px 0px 0px $shadow;
+  }
+  .rockComputer {
+    border-color: $rockMain;
+    box-shadow: 0px 5px 0px 0px $rockShadow, inset 0px 5px 0px 0px $shadow;
   }
 }
 .replay {
   position: absolute;
-  top: 70px;
-  left: -222px;
+  top: 194px;
+  left: -112px;
   display: flex;
   flex-direction: column;
   p {
     text-transform: uppercase;
-    font-size: 2.8rem;
+    font-size: 2.7rem;
     font-weight: 700;
     text-shadow: -1px 3px 7px #000000a1;
   }
   button {
-    padding: 10px 50px;
+    padding: 10px 40px;
     border-radius: 6px;
     margin-top: 10px;
     font-size: 0.8rem;
@@ -446,8 +442,23 @@ body {
   }
 }
 
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 // RESPONSIVE DESKTOP
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 @media screen and (min-width: 768px) {
+  // Desktop Modal
+  .modal-wrapper {
+    transform: scale(1);
+  }
+  .modal {
+    padding: 1.4rem;
+  }
+
+  // Desktop Header
   .header {
     height: 80px;
     width: 500px;
@@ -459,8 +470,10 @@ body {
     }
     .score {
       padding: 12px 35px;
+      border-radius: 6px;
       span:nth-of-type(1) {
         font-size: 0.7rem;
+        letter-spacing: 2px;
       }
       span:nth-of-type(2) {
         font-size: 3rem;
@@ -468,6 +481,7 @@ body {
     }
   }
 
+  // Desktop Main
   .center {
     margin-top: 0;
   }
@@ -501,13 +515,13 @@ body {
     bottom: 40px;
     right: 176px;
   }
-
   .rules-btn {
     position: absolute;
     bottom: 25px;
     right: 25px;
   }
 
+  // Desktop Footer
   .attribution {
     opacity: 0.3;
     font-size: 0.65rem;
@@ -521,6 +535,113 @@ body {
       &:hover {
         opacity: 0.8;
       }
+    }
+  }
+
+  // Desktop PLAY ${COMPONENTS}
+  .play-composant {
+    width: 800px;
+    height: 400px;
+    .picked {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin-top: 26px;
+      width: 34%;
+    }
+    .house-picked {
+      margin-left: 70px;
+    }
+    .move-picked {
+      margin-left: 250px;
+    }
+    .play-symbol {
+      top: 90px;
+      left: 100px;
+      border: 30px solid;
+      width: 190px;
+      height: 190px;
+      .circle-win {
+        top: initial;
+        left: initial;
+      }
+    }
+    .circle-win {
+      top: initial;
+      left: initial;
+      width: 330px;
+      height: 330px;
+      &::before {
+        top: -44px;
+        left: -46px;
+        width: 420px;
+        height: 420px;
+      }
+      &::after {
+        top: -98px;
+        left: -99px;
+        width: 530px;
+        height: 530px;
+      }
+    }
+    .play-icon {
+      transform: scale(1.7);
+    }
+    .play-paper {
+      border-color: $paperMain;
+      box-shadow: 0px 9px 0px 0px $paperShadow, inset 0px 8px 0px 0px $shadow;
+    }
+    .play-scissors {
+      border-color: $scissorsMain;
+      box-shadow: 0px 9px 0px 0px $scissorsShadow, inset 0px 8px 0px 0px $shadow;
+    }
+    .play-rock {
+      border-color: $rockMain;
+      box-shadow: 0px 9px 0px 0px $rockShadow, inset 0px 8px 0px 0px $shadow;
+    }
+    .moveLeft {
+      left: 10px;
+    }
+    .moveRight {
+      right: 10px;
+    }
+  }
+  .circle-wait {
+    top: 90px;
+    right: 100px;
+    width: 260px;
+    height: 260px;
+    .dark-circle {
+      height: 190px;
+      width: 190px;
+    }
+    .rockComputer,
+    .scissorsComputer,
+    .paperComputer {
+      border: 30px solid;
+      width: 190px;
+      height: 190px;
+      img {
+        transform: scale(1.7);
+      }
+    }
+    .paperComputer {
+      border-color: $paperMain;
+      box-shadow: 0px 9px 0px 0px $paperShadow, inset 0px 8px 0px 0px $shadow;
+    }
+    .scissorsComputer {
+      border-color: $scissorsMain;
+      box-shadow: 0px 9px 0px 0px $scissorsShadow, inset 0px 8px 0px 0px $shadow;
+    }
+    .rockComputer {
+      border-color: $rockMain;
+      box-shadow: 0px 9px 0px 0px $rockShadow, inset 0px 8px 0px 0px $shadow;
+    }
+  }
+  .replay {
+    top: 70px;
+    left: -222px;
+    button {
+      padding: 10px 50px;
     }
   }
 }
