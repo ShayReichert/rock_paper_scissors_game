@@ -7,6 +7,7 @@ const House = ({
   isPlayPaper,
   setScore,
   score,
+  setValue,
   handleReset,
   setMoveLeftPlayer,
   setMoveTitles,
@@ -21,6 +22,7 @@ const House = ({
   const handleRandomResult = () => {
     const random = Math.floor(Math.random() * Math.floor(3));
     let computerPlay;
+
     switch (random) {
       case 0:
         computerPlay = "paperComputer";
@@ -32,70 +34,49 @@ const House = ({
       default:
         computerPlay = "rockComputer";
     }
+
     setIsPlaying(false);
     setComputerPlays(computerPlay);
-    fight(computerPlay);
+    whoWin(computerPlay);
   };
 
-  const fight = (computerPlay) => {
-    setTimeout(next, 700);
+  const whoWin = (computerPlay) => {
+    setTimeout(fight, 700);
     let result;
 
-    function next() {
-      if (isPlayRock) {
-        switch (computerPlay) {
-          case "paperComputer":
-            lose();
-            break;
-          case "scissorsComputer":
-            win();
-            break;
-          case "rockComputer":
-          default:
-            result = "Match";
-        }
-      } else if (isPlayScissors) {
-        switch (computerPlay) {
-          case "paperComputer":
-            win();
-            break;
-          case "rockComputer":
-            lose();
-            break;
-          case "scissorsComputer":
-          default:
-            result = "Match";
-        }
-      } else if (isPlayPaper) {
-        switch (computerPlay) {
-          case "scissorsComputer":
-            lose();
-            break;
-          case "rockComputer":
-            win();
-            break;
-          case "paperComputer":
-          default:
-            result = "Match";
-        }
+    function fight() {
+      if (
+        (isPlayRock && computerPlay === "scissorsComputer") ||
+        (isPlayScissors && computerPlay === "paperComputer") ||
+        (isPlayPaper && computerPlay === "rockComputer")
+      ) {
+        youWin();
+      } else if (
+        (isPlayRock && computerPlay === "paperComputer") ||
+        (isPlayScissors && computerPlay === "rockComputer") ||
+        (isPlayPaper && computerPlay === "scissorsComputer")
+      ) {
+        youLose();
+      } else {
+        result = "Match";
       }
 
-      function lose() {
+      function youLose() {
         result = "You Lose";
         setScore(score - 1);
         setAddCircleWinComputer("circle-win");
       }
-      function win() {
+      function youWin() {
         result = "You Win";
         setScore(score + 1);
         setAddCircleWinPlayer("circle-win");
       }
-
       setFinalResults(result);
     }
   };
 
   function setFinalResults(result) {
+    setValue(score);
     setResults(result);
     setMoveLeftPlayer("moveLeft");
     setMoveRightComputer("moveRight");

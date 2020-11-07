@@ -11,7 +11,15 @@ const Attributions = ({ name }) => {
       >
         Frontend Mentor
       </a>
-      . Coded by <a href="shayreichert.com">{name}</a>.
+      . Coded by{" "}
+      <a
+        href="https://shayreichert.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {name}
+      </a>
+      .
     </div>
   );
 };

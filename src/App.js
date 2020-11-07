@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style/style.scss";
 import Modal from "./components/Modal";
 import useModal from "./hooks/useModal";
@@ -10,21 +10,16 @@ import Attributions from "./components/Attributions";
 
 import PlayElement from "./components/PlayElement";
 import House from "./components/House";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const App = () => {
-  const { isOpen, handleToogle } = useModal();
   const [score, setScore] = useState(0);
   const [moveLeftPlayer, setMoveLeftPlayer] = useState("");
   const [moveTitles, setMoveTitles] = useState("");
   const [addCircleWinPlayer, setAddCircleWinPlayer] = useState("");
 
-  const handleReset = () => {
-    setAddCircleWinPlayer("");
-    setMoveTitles("");
-    setMoveLeftPlayer("");
-    reset();
-  };
-
+  const { storedValue, setValue } = useLocalStorage("score", score);
+  const { isOpen, handleToogle } = useModal();
   const {
     isPlay,
     playPaper,
@@ -35,6 +30,19 @@ const App = () => {
     isPlayRock,
     reset,
   } = HandlePlayerChoice();
+
+  const handleReset = () => {
+    setValue(score);
+    setAddCircleWinPlayer("");
+    setMoveTitles("");
+    setMoveLeftPlayer("");
+    reset();
+  };
+
+  useEffect(() => {
+    storedValue ? setScore(storedValue) : setScore(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -62,6 +70,7 @@ const App = () => {
                 isPlayPaper={isPlayPaper}
                 setScore={setScore}
                 score={score}
+                setValue={setValue}
                 handleReset={handleReset}
                 setMoveLeftPlayer={setMoveLeftPlayer}
                 setMoveTitles={setMoveTitles}
