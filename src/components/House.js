@@ -58,7 +58,7 @@ const House = ({
       ) {
         youLose();
       } else {
-        result = "Match";
+        result = "Draw";
       }
 
       function youLose() {
