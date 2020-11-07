@@ -133,10 +133,10 @@ body {
   justify-content: space-between;
   align-items: center;
   border: 2px solid $headerOutline;
+  border-radius: 4px;
   height: 40px;
   width: 70%;
   max-width: 300px;
-  border-radius: 4px;
   margin: auto;
   margin-top: 25px;
   margin-bottom: 20px;
@@ -479,6 +479,7 @@ body {
     width: 500px;
     max-width: 500px;
     padding: 22px;
+    border-radius: 14px;
     img {
       transform: scale(0.8);
       margin-left: -14px;
