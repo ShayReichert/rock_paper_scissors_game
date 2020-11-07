@@ -1,6 +1,8 @@
 # Frontend Mentor - Rock, Paper, Scissors
 
-![Design preview for the Rock, Paper, Scissors coding challenge](./design/desktop-preview.jpg)
+Result here : https://shayreichert.github.io/rock_paper_scissors_game/
+
+![Design preview for the Rock, Paper, Scissors coding challenge](./src/images/desktop-preview.jpg)
 
 ## Welcome! 👋
 
